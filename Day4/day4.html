@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Day 4</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  
+    <input type="file" name="inputfile"
+          id="inputfile">
+
+    <br>
+
+    <pre id="output"></pre>
+
+    <script type="text/javascript">
+      var data = "";
+      // when text file is inputted 
+      document.getElementById('inputfile').addEventListener('change', function() {
+  
+      var fr=new FileReader();
+      fr.onload=function(){
+        data = fr.result;
+        
+        // split by assignments
+        const breakPoint = /,|\n|-/;
+        const assn = data.split(breakPoint); // i=elf1 first i+1=elf1 second i+2=elf2 first i+3=elf2 second
+
+        
+        var covs =0; // num assignments where a partner fully covers a partner
+        var olaps=0; // number of overlaps between partners
+        for(var i=0;i<assn.length;i+=4){
+          if(( (parseInt(assn[i]) <= parseInt(assn[i+2])) && (parseInt(assn[i+1]) >= parseInt(assn[i+3])))
+          ||( (parseInt(assn[i]) >= parseInt(assn[i+2])) && (parseInt(assn[i+1]) <= parseInt(assn[i+3])))){
+            covs++;
+          }
+          if(( (parseInt(assn[i]) <= parseInt(assn[i+3])) && (parseInt(assn[i+1]) >= parseInt(assn[i+2])))){
+            olaps++;
+          }
+        }
+        
+        document.getElementById('output').textContent=("Total full covers: " + covs + 
+        "\nTotal overlaps: " + olaps);
+      }
+  
+      fr.readAsText(this.files[0]);
+      })
+    </script>
+
+</body>
+
+</html>
