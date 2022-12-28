@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contains Duplicate</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <script src="ContainsDuplicate.js"></script>
+  <span style="font-size: 20px;">
+    <pre id="output1"></pre>
+    <pre id="output2"></pre>
+    <pre id="output3"></pre>
+  </span>
+    <script type="text/javascript">
+      // test sets 
+
+      const num1 = [1,2,3,1]; 
+      const num2 = [1,2,3,4];
+      const num3 = [1,1,1,3,3,4,3,2,4,2]
+      document.getElementById("output1").textContent="[" + num1 + "]: " +containsDuplicate(num1);
+      document.getElementById("output2").textContent="[" + num2 + "]: " +containsDuplicate(num2);
+      document.getElementById("output3").textContent="[" + num3 + "]: " + containsDuplicate(num3);
+      
+    </script>
+    <script src="ContainsDuplicate.js"></script>
+    
+</body>
+</html>
