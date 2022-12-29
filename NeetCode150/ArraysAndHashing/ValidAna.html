@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Valid Anagram</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <script src="ValidAnagram.js"></script>
+  <span style="font-size: 20px;">
+    <pre id="output1"></pre>
+    <pre id="output2"></pre>
+  </span>
+    <script type="text/javascript">
+
+      // test values 
+      let s1 = "anagram";
+      let t1 = "nagaram";
+      let s2 = "rat";
+      let t2 = "car";
+      
+      document.getElementById("output1").textContent=t1 + " is an anagram of "+ s1 +": " + isAnagram(s1,t1);
+      document.getElementById("output2").textContent=t2 + " is an anagram of "+ s2 +": " + isAnagram(s2,t2);
+      
+    </script>
+    
+</body>
+</html>
