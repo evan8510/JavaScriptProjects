@@ -18,7 +18,6 @@ var isAnagram = function(s, t) {
             amount = sMap.get(temp);
         sMap.set(temp,amount+1);
     }
-
     // iterate throught second string & check in constant time whether or not the
     // character appears in the Map and if it appears too often
     for(i =0; i< t.length;i++){
