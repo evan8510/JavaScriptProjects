@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Day 5</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <input type="file" name="inputfile"
+          id="inputfile">
+    <br>
+    <pre id="output"></pre>
+    <script type="text/javascript">
+
+      var supplies = [[],[],[],[],[],[],[],[],[]]; // store as an array of stacks,
+      var lc = 0; // linecount
+      var data = "";
+
+      // when text file is inputted 
+      document.getElementById('inputfile').addEventListener('change', function() {
+      // read in file
+      var fr=new FileReader();
+      fr.onload=function(){
+        data = fr.result.split(/\n/);
+        
+        for(var j=0;j<9;j++){ // read in initital stacks
+          for(var i =0; i<8;i++){
+              var str =data[7-i].charAt(1+(j*4));
+              supplies[j][i] = str;
+              if(str == " "){
+                supplies[j].pop();
+                break;
+              }
+          }
+        }
+
+        var haul =0;
+        var loc1=0;
+        var loc2 =0;
+        var regex = /[a-z]| /;
+        var move = "";
+        var craneType = 1; // 0->CrateMover 9000, 1->CrateMover9001
+
+        for(var i =10;i<data.length;i++){ // read in & perform moves
+          move = (data[i].split(regex));
+          haul = parseInt(move[5]) ;
+          loc1 = parseInt(move[11]) -1;
+          loc2 = parseInt(move[15] - 1);
+          if(craneType ==0){
+            for(var j =0; j<haul;j++){
+                supplies[loc2].push(supplies[loc1].pop()); // 1 by 1 add the top of loc1 to loc2
+            }
+          }
+          else{
+            var stack = [];
+            for(var j =0; j<haul;j++){
+                stack.push(supplies[loc1].pop()); // 1 by 1 add the top of loc1 to temp Stack
+            }
+            for(var j =0; j<haul; j++){
+              supplies[loc2].push(stack.pop());   // 1 by 1 add the top of tempStac to loc 2
+            }
+          }
+        }
+        document.getElementById('output').textContent=("Tops: " + supplies[0].pop() 
+        + supplies[1].pop() + supplies[2].pop() + supplies[3].pop() + supplies[4].pop()
+        + supplies[5].pop() + supplies[6].pop() + supplies[7].pop() + supplies[8].pop());
+      }
+      fr.readAsText(this.files[0]);
+      })
+    </script>
+</body>
+</html>
